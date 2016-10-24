@@ -2,8 +2,8 @@ FROM nginx:alpine
 
 EXPOSE 80
 
-COPY index.ctmpl /index.ctmpl
-COPY nginx.ctmpl /nginx.ctmpl
+COPY index.ctmpl /
+COPY nginx.ctmpl /
 COPY nginx.conf  /etc/nginx/nginx.conf
 COPY index.html  /www/index.html
 COPY consul-template   /consul-template
