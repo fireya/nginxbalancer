@@ -5,7 +5,7 @@ EXPOSE 80
 ADD backports.list /etc/apt/sources.list.d/backports.list
 RUN apt-get update && apt-get install -y --force-yes nginx curl -t wheezy-backports 
 
-RUN curl -L -s https://github.com/hashicorp/consul-template/releases/download/v0.8.0/consul-template_0.8.0_linux_amd64.tar.gz  \
+RUN curl -L -s https://releases.hashicorp.com/consul-template/0.16.0/consul-template_0.16.0_linux_amd64.zip  \
 	| tar --strip-components=1 -xzf -
 
 # Use tini as subreaper in Docker container to adopt zombie processes
