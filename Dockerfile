@@ -3,10 +3,7 @@ FROM debian:wheezy
 EXPOSE 80
 
 ADD backports.list /etc/apt/sources.list.d/backports.list
-RUN apt-get update && apt-get install -y --force-yes nginx curl -t wheezy-backports 
-
-RUN curl -L -s https://releases.hashicorp.com/consul-template/0.16.0/consul-template_0.16.0_linux_amd64.zip  \
-	| tar --strip-components=1 -xzf -
+RUN apt-get update && apt-get install -y --force-yes nginx curl unzip -t wheezy-backports 
 
 # Use tini as subreaper in Docker container to adopt zombie processes
 RUN curl -L -s https://github.com/krallin/tini/releases/download/v0.5.0/tini-static -o /bin/tini \
@@ -19,7 +16,9 @@ ADD nginx.ctmpl /nginx.ctmpl
 ADD nginx.conf  /etc/nginx/nginx.conf
 ADD index.html  /www/index.html
 ADD reload.sh   /reload.sh
+ADD consul-template   /consul-template
 RUN chmod +x /reload.sh
+RUN chmod +x /consul-template
 
 
 
